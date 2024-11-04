@@ -12,7 +12,8 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = [];
+        return view("admin.posts.index", compact("posts"));
     }
 
     /**
