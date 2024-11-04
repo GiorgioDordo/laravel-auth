@@ -25,7 +25,9 @@ Auth::routes();
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get("/posts", [AdminPostController::class, "index"]) ->name("admin.posts.index");
-Route::get("/posts/{}id", [AdminPostController::class, "show"])->name("admin.posts.show");
-Route::get("/posts/create", [AdminPostController::class, "create"])->name("admin.posts.create");
-Route::get("/posts", [AdminPostController::class, "store"])->name("admin.posts.store");
+Route::middleware("auth")->prefix("/admin")->name("admin.")->group(function(){
+    Route::get("/posts", [AdminPostController::class, "index"]) ->name("posts.index");
+    Route::get("/posts/{}id", [AdminPostController::class, "show"])->name("posts.show");
+    Route::get("/posts/create", [AdminPostController::class, "create"])->name("posts.create");
+    Route::get("/posts", [AdminPostController::class, "store"])->name("posts.store");
+});
