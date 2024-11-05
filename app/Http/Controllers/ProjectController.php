@@ -1,19 +1,19 @@
 <?php
 
 namespace App\Http\Controllers\Admin;
-
+use App\Models\Project;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class PostController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $posts = [];
-        return view("admin.posts.index", compact("posts"));
+        $projects = Project::all();
+        return view("admin.index", compact("projects"));
     }
 
     /**

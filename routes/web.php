@@ -1,7 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\PostController as AdminPostController;
-use App\Http\Controllers\Guest\PostController as GuestPostController;
+use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -17,17 +16,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+// Route::get('/', function () {
+//     return view('pages.home');
+// });
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::middleware("auth")->prefix("/admin")->name("admin.")->group(function(){
-    Route::get("/posts", [AdminPostController::class, "index"]) ->name("posts.index");
-    Route::get("/posts/{}id", [AdminPostController::class, "show"])->name("posts.show");
-    Route::get("/posts/create", [AdminPostController::class, "create"])->name("posts.create");
-    Route::get("/posts", [AdminPostController::class, "store"])->name("posts.store");
+    Route::get("/projects", [AdminProjectController::class, "index"]) ->name("projects.index");
 });
